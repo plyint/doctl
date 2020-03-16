@@ -56,11 +56,17 @@ Let's Encrypt certificates are free and will be auto-renewed and managed for you
 
 To create a Let's Encrypt certificate, you'll need to add the domain(s) to your account at cloud.digitalocean.com, or via `+"`"+`doctl compute domain create`+"`"+`, then provide a certificate name and a comma-separated list of the domain names you'd like to associate with the certificate:
 
-	doctl compute certificate create --type lets_encrypt --name mycert --dns-names example.org
+	doctl compute certificate create \
+		--type lets_encrypt --name mycert \
+		--dns-names example.org
 
 To upload a custom certificate, you'll need to provide a certificate name, the path to the certificate, the path to the private key for the certificate, and the path to the certificate chain, all in PEM format:
 
-	doctl compute certificate create --type custom --name mycert --leaf-certificate-path cert.pem --certificate-chain-path fullchain.pem --private-key-path privkey.pem`, Writer, aliasOpt("c"))
+	doctl compute certificate create \
+		--type custom --name mycert \
+		--leaf-certificate-path cert.pem \
+		--certificate-chain-path fullchain.pem \
+		--private-key-path privkey.pem`, Writer, aliasOpt("c"))
 	AddStringFlag(cmdCertificateCreate, doctl.ArgCertificateName, "", "",
 		"Certificate name", requiredOpt())
 	AddStringSliceFlag(cmdCertificateCreate, doctl.ArgCertificateDNSNames, "",
